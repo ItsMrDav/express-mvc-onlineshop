@@ -1,10 +1,10 @@
 import express from 'express';
-import * as productsController from '../controllers/products.js';
+import * as adminController from '../controllers/admin.js';
 
 export const adminRoutes = express.Router();
 
-// /admin/add-product => GET
-adminRoutes.get('/add-product', productsController.getAddProduct);
+adminRoutes.get('/add-product', adminController.getAddProduct);
 
-// /admin/add-product => POST
-adminRoutes.post('/add-product', productsController.postAddProduct);
+adminRoutes.get('/products', adminController.getProducts);
+
+adminRoutes.post('/add-product', adminController.postAddProduct);

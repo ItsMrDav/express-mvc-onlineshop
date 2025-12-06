@@ -1,6 +1,14 @@
 import express from 'express';
-import * as productsController from '../controllers/products.js';
+import * as shopController from '../controllers/shop.js';
 
 export const shopRoutes = express.Router();
 
-shopRoutes.get('/', productsController.getProducts);
+shopRoutes.get('/', shopController.getIndex);
+
+shopRoutes.get('/products', shopController.getProducts);
+
+shopRoutes.get('/cart', shopController.getCart);
+
+shopRoutes.get('/orders', shopController.getOrders);
+
+shopRoutes.get('/checkout', shopController.getCheckout);

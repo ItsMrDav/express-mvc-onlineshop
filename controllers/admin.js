@@ -1,30 +1,25 @@
 import { Product } from '../models/product.js';
 
 export const getAddProduct = (req, res, next) => {
-  res.render('add-product', {
+  res.render('admin/add-product', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
-    formCSS: true,
-    productCSS: true,
-    activeAddProduct: true,
   });
 };
 
 export const postAddProduct = (req, res, next) => {
-  const product = new Product(req.body.title);
+  const { title, imageUrl, price, description } = req.body;
+  const product = new Product(title, imageUrl, price, description);
   product.save();
   res.redirect('/');
 };
 
 export const getProducts = (req, res, next) => {
   Product.fetchAll(products => {
-    res.render('shop', {
+    res.render('admin/products', {
       prods: products,
-      pageTitle: 'Shop',
-      path: '/',
-      hasProducts: products.length > 0,
-      productCSS: true,
-      activeShop: true,
+      pageTitle: 'Admin Products',
+      path: '/admin/products',
     });
   });
 };
