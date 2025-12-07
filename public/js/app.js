@@ -9,14 +9,17 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+// Application level middlewared
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(import.meta.dirname, '..', '..', 'public')));
 
+// Route middlewares
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 // Middleware for 404 page for not defined routes
 app.use(get404Page);
-console.log(import.meta);
+
+// Initiating the server
 app.listen(8000, () => console.log(`Hello from port:8000 server`));
